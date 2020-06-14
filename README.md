@@ -1,4 +1,5 @@
-Raspberry Pi Kivy Media Player
+# Description
+Simple Raspberry Pi Kivy Media Player. It uses Kivy as the Gui Builder, which is written in Python. You can define three radio stations and a path to your music folder directory. 
 
 # Install
 Kivy doesn't run on Python3.8, yet. So create a virtual envorenment with Python 3.7 or Python 3.6, then download the repository.
