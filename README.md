@@ -1,5 +1,5 @@
 # Description
-Simple Raspberry Pi Kivy Media Player. It uses Kivy as the Gui Builder, which is written in Python. You can define three radio stations and a path to your music folder directory.
+Simple Raspberry Pi Kivy Media Player. It uses VLC (python-vlc) to serve the music and Kivy as the Gui Builder, which is written in Python. You can define three radio stations and a path to your music folder directory.
 
 You can use it as a replacement for a music player with easier touch control than the pre-installed music players on Raspbian.
 
