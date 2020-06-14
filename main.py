@@ -1,7 +1,7 @@
 from kivy.app import App
 from kivy.lang.builder import Builder
 
-from kivy.uix.screenadmin import Screenadmin, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
@@ -247,14 +247,14 @@ class Netzwerk(Screen):
 
     def check_connectivity(self):
         # Router
-        host = '192.168.178.2.1'
+        host = '192.168.2.1'
         package_loss = self.ping_host(host)
         output = f"Router (router) {package_loss}\n"
         self.text_input.text = output
        # NAS
-        host = '192.168.178.2.28'
+        host = '192.168.2.28'
         package_loss = self.ping_host(host)
-        output = output + f"Nas (Nas) {package_loss}\n"
+        output = output + f"Nas {package_loss}\n"
         self.text_input.text = output
         #Fritz Box
         host = '192.168.178.1'
@@ -282,7 +282,7 @@ class Netzwerk(Screen):
         self.text_input.text = str(output.decode('UTF-8'))
 
 
-class Windowadmin(Screenadmin):
+class WindowManager(ScreenManager):
     pass
 
 
