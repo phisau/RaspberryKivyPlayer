@@ -24,6 +24,7 @@ This is still individualized to my network. To change the change your IP Address
 
 ```ksh
 #!/bin/ksh
+# /home/admin/scripts/switch_vpn.sh
 # Program to restart tun0 in order to restart vpn
 
 datum=$(date)
