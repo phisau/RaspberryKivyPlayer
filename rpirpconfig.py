@@ -1,7 +1,7 @@
 #!/usr/bin/env/python3
 
 ##
-# Config file for KesselKivy
+# Config file for Raspberry Kivy Player
 ##
 
 path_to_folder = "/mnt/nas/musik/"
