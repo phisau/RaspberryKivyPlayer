@@ -1,0 +1,164 @@
+#:kivy 1.1.0
+
+WindowManager:
+    KesselWindow:
+    Netzwerk:
+
+
+<PlayButton@Button>:
+    font_size: 20
+<KesselWindow>:
+    name: "KesselWindow"
+    text_input: text_input
+
+    GridLayout:
+        rows: 2
+        size: root.width, root.height
+        GridLayout:
+            cols: 1
+            orientation: 'horizontal'
+            GridLayout:
+                cols: 4
+                Button:
+                    text: 'Beenden'
+                    font_size: 20
+                    size_hint_x: root.width  / 2
+                    on_release: app.stop()
+                Button:
+                    text: 'Pause/Weiter'
+                    size_hint_x: root.width  / 1
+                    font_size: 20
+                    on_release: root.pause_player()
+
+                Button:
+                    text: 'Netzwerk'
+                    size_hint_x: root.width  / 2
+                    font_size: 20
+                    on_release:
+                        app.root.current = 'Netzwerk'
+                        root.manager.transition.direction = "left"
+
+                Button:
+                    text: 'STOP'
+                    size_hint_x: root.width  / 2
+                    font_size: 20
+                    on_release: root.stop_player()
+
+            GridLayout:
+                cols: 3
+                Button:
+                    text: 'Vorheriges Lied'
+                    font_size: 20
+                    size_hint_x: 0.25
+                    on_release: root.song_back()
+                RstDocument:
+                    id: text_input
+                    text: text_input.text
+                    size_hint_x: 0.5
+                    show_errors: True
+                Button:
+                    text: 'Nächstes Lied'
+                    font_size: 20
+                    size_hint_x: 0.25
+                    on_release: root.song_forward()
+ 
+        GridLayout:
+            cols: 2
+            size: root.width, root.height * 2/3
+            PlayButton:
+                text: root.get_attributes()['station1']['name']
+                on_release: root.play_radio(root.get_attributes()['station1']['url'])
+            PlayButton:
+                text: "Musik"
+                on_release: root.show_load()
+            PlayButton:
+                text: root.get_attributes()['station2']['name']
+                on_release: root.play_radio(root.get_attributes()['station2']['url'])
+            PlayButton:
+                text: root.get_attributes()['station3']['name']
+                on_release: root.play_radio(root.get_attributes()['station3']['url'])
+
+<LoadDialog>:
+    Button:
+        font_size: '1'
+    BoxLayout:
+        orientation: 'vertical'
+
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: sp(50)
+
+            Button:
+                size_hint_x: 1
+                text: 'Kachelsicht'
+                on_press: fc.view_mode = 'icon'
+            Button:
+                size_hint_x: 1
+                text: 'Listensicht'
+                on_press: fc.view_mode = 'list'
+            Button:
+                size_hint_x: 2
+                text: "START"
+                on_release: root.load(fc.path, fc.selection)
+            Button:
+                size_hint_x: 1
+                text: "Zurück"
+                on_release: root.cancel()
+
+        FileChooser:
+            id: fc
+            dirselect: True
+            path: root.get_path()
+            FileChooserIconLayout
+            FileChooserListLayout
+
+<Netzwerk>:
+    name: "Netzwerk"
+    text_input: text_input
+    background_color: 1,1,0,0
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 2
+        
+            Button:
+                text: 'Zurück zur Musik'
+                on_release:
+                    app.root.current = "KesselWindow"
+                    root.manager.transition.direction = "right"
+        GridLayout:
+            cols: 2
+            Button:
+                text: 'VPN Deutschland'
+                on_release: root.change_vpn_de()
+            Button:
+                text: 'VPN Östereich '
+                on_release: root.change_vpn_at()
+            Button:
+                text: 'VPN Frankreich'
+                on_release: root.change_vpn_fr()
+            Button:
+                text: 'VPN USA'
+                on_release: root.change_vpn_us()
+            Button:
+                text: 'Internet Test'
+                on_release: root.check_connectivity()
+            Button:
+                text: 'platzhalter'
+        GridLayout:
+            cols: 2
+            Label
+                id: text_input
+                text: text_input.text
+                size_hint_x: 2
+#                canvas.before:
+#                    background_color: 1, 0, 0, 0
+#                    Color:
+#                        rgba: root.background_color
+                show_errors: True
+            Button:
+                text: 'Refresh Log'
+                on_release: root.refresh_log()
+                size_hint_x: 1
+
